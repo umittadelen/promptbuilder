@@ -113,7 +113,7 @@
     <textarea id="setting" placeholder="Setting">forest, afternoon, sitting next to a lake</textarea>
 
     <label for="backgroundDetails">Background Details:</label>
-    <textarea id="backgroundDetails" placeholder="Background details">detailed background, detailed textures, detailed shadows</textarea>
+    <textarea id="backgroundDetails" placeholder="Background details"></textarea>
 
     <label for="expression">Expression:</label>
     <textarea id="expression" placeholder="Expression">smile, :d, fang, open mouth, full face blush</textarea>
@@ -125,7 +125,7 @@
     <textarea id="additionalDetails" placeholder="Additional details">full body visible</textarea>
 
     <label for="fixedComponents">Fixed Components:</label>
-    <textarea type="text" id="fixedComponents">ima_AI123, furry, anime drawing, 1girl, solo, little girl, loli</textarea>
+    <textarea type="text" id="fixedComponents">detailed background, detailed textures, detailed shadows, ima_AI123, furry, anime drawing, 1girl, solo, little girl, loli</textarea>
 
     <button onclick="populateRandomFields()">Random</button>
     <button onclick="generatePrompt()">Generate Prompt</button>
@@ -139,7 +139,7 @@
     const hairstyleList = ["short hair", "two buns hanging down", "ponytail", "curly hair", "bob cut", "pixie cut", "long straight hair", "braided pigtails", "side braid", "wavy hair"];
     const outfitList = ["dress adorned with pastel-colored lace", "frilly pink dress", "polka dot skirt", "striped kimono", "satin gown", "ruffled blouse and shorts", "long coat and leggings", "cute puffy dress", "flower-printed dress", "black gothic dress"];
     const settingList = ["forest", "flower garden", "castle", "beach", "city park", "mountain lake", "enchanted forest", "mystic village", "riverside", "cloudy hill"];
-    const backgroundDetailsList = ["detailed background", "detailed textures", "sunlight filtering through trees", "afternoon shadows", "sparkling lake", "misty morning", "twinkling stars", "glowing fireflies", "colorful sunset", "snowy path"];
+    const backgroundDetailsList = [ "sunlight filtering through trees", "afternoon shadows", "sparkling lake", "misty morning", "twinkling stars", "glowing fireflies", "colorful sunset", "snowy path"];
 
     function getRandomElement(arr) {
         return arr[Math.floor(Math.random() * arr.length)];

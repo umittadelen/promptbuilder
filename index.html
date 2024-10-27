@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Dark and neon styling */
+        body {
+            background-color: #0e0e0e;
+            color: #e0e0e0;
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensures minimum height of 100% */
+            margin: 0;
+            overflow: auto; /* Allows scrolling */
+        }
+        .container {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+            width: 100%; /* Full width on smaller screens */
+            max-width: 600px; /* Max width */
+            box-sizing: border-box; /* Ensures padding is included in width */
+            margin: 20px; /* Adds some margin for aesthetics */
+        }
+        h1 {
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #00ff99;
+            text-shadow: 0 0 10px rgba(0, 255, 153, 0.8);
+        }
+        label {
+            font-size: 14px;
+            color: #ffcc66;
+        }
+        textarea, button, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            background-color: #444;
+            color: #fff;
+            transition: background-color 0.3s ease;
+            resize: vertical; /* Allow vertical resizing for textareas */
+        }
+        textarea {
+            width: calc(100% - 20px);
+            height: 60px; /* Set a default height for textareas */
+        }
+        textarea:focus, button:focus, select:focus {
+            background-color: #555;
+            outline: none;
+            box-shadow: 0 0 5px #00ff99;
+        }
+        button {
+            background-color: #00ff99;
+            color: #1a1a1a;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        button:hover {
+            background-color: #00cc7a;
+        }
+        .output {
+            background-color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            color: #ccff99;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            border: 1px solid #00ff99;
+            box-shadow: 0 0 10px rgba(0, 255, 153, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Prompt Generator</h1>
+    
+    <label for="gender">Character Gender:</label>
+    <select id="gender">
+        <option value="1girl">1girl</option>
+        <option value="1boy">1boy</option>
+    </select>
+
+    <label for="character">Character Appearance:</label>
+    <textarea id="character" placeholder="Character name">Character name</textarea>
+
+    <label for="outfit">Outfit Description:</label>
+    <textarea id="outfit" placeholder="Outfit description">dress adorned with pastel-colored lace and ribbons</textarea>
+
+    <label for="outfitColor">Outfit Color Scheme:</label>
+    <textarea id="outfitColor" placeholder="Outfit color scheme">pink and black dress, multi colored</textarea>
+
+    <label for="accessories">Accessories:</label>
+    <textarea id="accessories" placeholder="Accessories">black hairband, braid</textarea>
+
+    <label for="hairstyle">Hairstyle:</label>
+    <textarea id="hairstyle" placeholder="Hairstyle">short hair, two buns hanging down</textarea>
+
+    <label for="setting">Setting:</label>
+    <textarea id="setting" placeholder="Setting">forest, afternoon, sitting next to a lake</textarea>
+
+    <label for="backgroundDetails">Background Details:</label>
+    <textarea id="backgroundDetails" placeholder="Background details">detailed background, detailed textures, detailed shadows</textarea>
+
+    <label for="expression">Expression:</label>
+    <textarea id="expression" placeholder="Expression">smile, :d, fang, open mouth, full face blush</textarea>
+
+    <label for="animalFeatures">Animal Features:</label>
+    <textarea id="animalFeatures" placeholder="Animal features">light green fur, kemono, glistering eyes, sparkle eyes</textarea>
+
+    <label for="additionalDetails">Additional Details:</label>
+    <textarea id="additionalDetails" placeholder="Additional details">full body visible</textarea>
+
+    <label for="fixedComponents">Fixed Components:</label>
+    <textarea type="text" id="fixedComponents">ima_AI123, furry, anime drawing, 1girl, solo, little girl, loli</textarea>
+
+    <button onclick="populateRandomFields()">Random</button>
+    <button onclick="generatePrompt()">Generate Prompt</button>
+    
+    <div class="output" id="output"></div>
+</div>
+
+<script>
+    // Lists of example options
+    const accessoriesList = ["black hairband", "braid", "white ribbon", "silver necklace", "gold bracelet", "blue scarf", "red choker", "flower crown", "butterfly brooch", "pink bow"];
+    const hairstyleList = ["short hair", "two buns hanging down", "ponytail", "curly hair", "bob cut", "pixie cut", "long straight hair", "braided pigtails", "side braid", "wavy hair"];
+    const outfitList = ["dress adorned with pastel-colored lace", "frilly pink dress", "polka dot skirt", "striped kimono", "satin gown", "ruffled blouse and shorts", "long coat and leggings", "cute puffy dress", "flower-printed dress", "black gothic dress"];
+    const settingList = ["forest", "flower garden", "castle", "beach", "city park", "mountain lake", "enchanted forest", "mystic village", "riverside", "cloudy hill"];
+    const backgroundDetailsList = ["detailed background", "detailed textures", "sunlight filtering through trees", "afternoon shadows", "sparkling lake", "misty morning", "twinkling stars", "glowing fireflies", "colorful sunset", "snowy path"];
+
+    function getRandomElement(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function populateRandomFields() {
+        document.getElementById("outfit").value = getRandomElement(outfitList);
+        document.getElementById("accessories").value = getRandomElement(accessoriesList);
+        document.getElementById("hairstyle").value = getRandomElement(hairstyleList);
+        document.getElementById("setting").value = getRandomElement(settingList);
+        document.getElementById("backgroundDetails").value = getRandomElement(backgroundDetailsList);
+    }
+
+    function generatePrompt() {
+        const gender = document.getElementById("gender").value;
+        const character = document.getElementById("character").value.trim();
+        const outfit = document.getElementById("outfit").value.trim();
+        const outfitColor = document.getElementById("outfitColor").value.trim();
+        const accessories = document.getElementById("accessories").value.trim();
+        const hairstyle = document.getElementById("hairstyle").value.trim();
+        const setting = document.getElementById("setting").value.trim();
+        const backgroundDetails = document.getElementById("backgroundDetails").value.trim();
+        const expression = document.getElementById("expression").value.trim();
+        const animalFeatures = document.getElementById("animalFeatures").value.trim();
+        const additionalDetails = document.getElementById("additionalDetails").value.trim();
+        const fixedComponents = document.getElementById("fixedComponents").value;
+
+        const promptParts = [
+            gender,
+            character,
+            outfit,
+            outfitColor,
+            hairstyle,
+            accessories,
+            setting,
+            expression,
+            animalFeatures,
+            additionalDetails,
+            fixedComponents
+        ];
+
+        // Filter out any empty entries
+        const filteredPrompt = promptParts.filter(Boolean).join(", ");
+
+        // Add background details if provided
+        if (backgroundDetails) {
+            document.getElementById("output").innerText = filteredPrompt + (filteredPrompt ? ", " : "") + backgroundDetails;
+        } else {
+            document.getElementById("output").innerText = filteredPrompt;
+        }
+    }
+</script>
+
+</body>
+</html>
